@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <h1> AI Resume Analyzer</h1>
+
+    <p class="subtitle">
+        Upload your resume and get instant AI analysis
+    </p>
+
+    <!-- FORM START -->
+    <form action="/analyze" method="POST" enctype="multipart/form-data">
+
+        <div class="input-grid">
+
+            <div class="input-box">
+                <label>Upload Resume</label>
+                <input type="file" name="resume" required>
+            </div>
+
+            <div class="input-box">
+                <label>Paste Job Description</label>
+                <textarea
+                    name="job_text"
+                    placeholder="Enter job description here..."
+                    required></textarea>
+            </div>
+
+        </div>
+
+        <button type="submit">Analyze Resume</button>
+
+    </form>
+    <!-- FORM END -->
+
+
+        {% if score is not none %}
+    <div class="report-section">
+
+        <h2>📊 AI Analysis Report</h2>
+
+        <div class="cards-grid">
+
+            <div class="card">
+                <h3>🟢 Extracted Skills</h3>
+                <p>{{ skills }}</p>
+            </div>
+
+            <div class="card">
+                <h3>✅ Matched Skills</h3>
+                <p>{{ matched_skills }}</p>
+            </div>
+
+            <div class="card">
+                <h3>⚠️ Missing Skills</h3>
+                <p>{{ missing_skills }}</p>
+            </div>
+
+            <div class="card">
+                <h3>📈 Resume Score</h3>
+                <p>{{ score }}/100</p>
+            </div>
+
+            <div class="card">
+                <h3>⭐ Resume Level</h3>
+                <p>{{ level }}</p>
+            </div>
+
+            <div class="card">
+                <h3>💼 Recommended Role</h3>
+                <p>{{ role }}</p>
+            </div>
+
+        </div>
+
+    </div>
+    {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>
